@@ -1,16 +1,8 @@
 import * as React from 'react';
-import { useContext } from 'react';
-import { GameContext } from '../../AppContext';
+import GenericScoreBoard from '../../Components/GenericScoreBoard';
 
-function Grang() {
-    const context = useContext(GameContext);
-
-    return (
-        <div>
-            {context.runde.toString()}
-            {JSON.stringify(context)}
-        </div>
-    );
+function Kløver() {
+    return <GenericScoreBoard runde="grang" />;
 }
 
-export default Grang;
+export default Kløver;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import { Button, Input } from '../Components/Skjema';
+import { Button, Input } from './Skjema';
 import { useContext } from 'react';
 import { GameContext } from '../AppContext';
 
@@ -28,7 +28,7 @@ const StyledButton = styled(Button)<{ currentScore: boolean }>`
 `;
 const Scroller = styled.div`
     display: inline-flex;
-    overflow-x: scroll;
+    overflow-x: auto;
     margin-left: 0.5rem;
 `;
 
