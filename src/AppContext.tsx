@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useState } from 'react';
+import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { basePath } from './App/App';
 
@@ -36,8 +36,12 @@ interface GameContextI {
     removeSpiller: (spiller: Spiller) => void;
 }
 
+const localStorage = window.localStorage;
+
+const localstorageSpillere = localStorage.getItem('spillere');
+
 const initialState: GameContextI = {
-    spillere: [],
+    spillere: localstorageSpillere ? JSON.parse(localstorageSpillere) : [],
     runde: Runder.Setup,
     updateSpiller: () => null,
     setRunde: () => null,
@@ -50,6 +54,10 @@ export function GameContextProvider(props: { children: ReactNode }) {
     const runde = (useParams<{ runde: string }>().runde as unknown) as Runder;
     const history = useHistory();
     const [spillere, setSpillere] = useState<Spiller[]>(initialState.spillere);
+
+    useEffect(() => {
+        localStorage.setItem('spillere', JSON.stringify(spillere));
+    }, [spillere]);
 
     const setRunde = (runde: Runder) => {
         history.push(`${basePath}${Runder[runde]}`);
