@@ -40,10 +40,7 @@ function Setup() {
 
     const onSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        input &&
-            context.updateSpiller({
-                navn: input,
-            });
+        input && context.addSpiller(input);
         setInput('');
     };
 
@@ -57,9 +54,9 @@ function Setup() {
             </StyledForm>
             <UsualSuspectsStyling>
                 {usualSuspects
-                    .filter((it) => !context.spillere.map((spiller) => spiller.navn).includes(it))
-                    .map((it) => (
-                        <Button onClick={() => context.updateSpiller({ navn: it })}>{it}</Button>
+                    .filter((navn) => !context.spillere.map((spiller) => spiller.navn).includes(navn))
+                    .map((navn) => (
+                        <Button onClick={() => context.addSpiller(navn)}>{navn}</Button>
                     ))}
             </UsualSuspectsStyling>
             <SpillerListe>

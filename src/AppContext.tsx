@@ -15,11 +15,11 @@ export interface Score {
 
 export interface Spiller {
     navn: string;
-    score?: Score;
+    score: Score;
 }
 
 export enum Runder {
-    Setup,
+    Oppsett,
     Pass,
     Kløver,
     Kabal,
@@ -31,7 +31,8 @@ export enum Runder {
 interface GameContextI {
     runde: Runder;
     spillere: Spiller[];
-    updateSpiller: (spiller: Spiller) => void;
+    addSpiller: (navn: string) => void;
+    updateScore: (spiller: Spiller, score: Partial<Score>) => void;
     setRunde: (runde: Runder) => void;
     removeSpiller: (spiller: Spiller) => void;
 }
@@ -42,8 +43,9 @@ const localstorageSpillere = localStorage.getItem('spillere');
 
 const initialState: GameContextI = {
     spillere: localstorageSpillere ? JSON.parse(localstorageSpillere) : [],
-    runde: Runder.Setup,
-    updateSpiller: () => null,
+    runde: Runder.Oppsett,
+    addSpiller: () => null,
+    updateScore: () => null,
     setRunde: () => null,
     removeSpiller: () => null,
 };
@@ -63,16 +65,27 @@ export function GameContextProvider(props: { children: ReactNode }) {
         history.push(`${basePath}${Runder[runde]}`);
     };
 
-    const updateSpiller = (spiller: Spiller) => {
-        setSpillere((prevState) => [...prevState.filter((it) => it.navn !== spiller.navn), spiller]);
+    const addSpiller = (navn: string) => {
+        setSpillere((prevState) => [...prevState.filter((it) => it.navn !== navn), { navn: navn, score: {} }]);
+    };
+
+    const updateScore = (spiller: Spiller, score: Partial<Score>) => {
+        setSpillere((prevState) => [
+            ...prevState.filter((it) => it.navn !== spiller.navn),
+            { ...spiller, score: { ...spiller.score, ...score } },
+        ]);
     };
 
     const removeSpiller = (spiller: Spiller) => {
         setSpillere((prevState) => [...prevState.filter((it) => it.navn !== spiller.navn)]);
     };
 
+    const sortedSpillere = spillere.sort((a, b) => (a.navn > b.navn ? 1 : -1));
+
     return (
-        <GameContext.Provider value={{ setRunde, spillere, runde, updateSpiller, removeSpiller }}>
+        <GameContext.Provider
+            value={{ setRunde, spillere: sortedSpillere, runde, addSpiller, updateScore, removeSpiller }}
+        >
             {props.children}
         </GameContext.Provider>
     );

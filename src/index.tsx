@@ -12,7 +12,7 @@ ReactDOM.render(
         <BrowserRouter>
             <Switch>
                 <Route path={`${basePath}:runde`} component={App} />
-                <Route path={''} render={() => <Redirect to={`${basePath}${Runder[Runder.Setup]}`} />} />
+                <Route path={''} render={() => <Redirect to={`${basePath}${Runder[Runder.Oppsett]}`} />} />
             </Switch>
         </BrowserRouter>
     </React.StrictMode>,

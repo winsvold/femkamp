@@ -9,6 +9,7 @@ const StyledNav = styled.nav`
     background-color: #0003;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0 -1rem 1rem #0006;
 `;
 
 const StyledLink = styled(Link)<{ align: 'left' | 'right' }>`
