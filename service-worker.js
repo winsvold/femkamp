@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/femkamp/precache-manifest.72a6729c3e6cfccb5b170deb7209c4af.js"
+  "/femkamp/precache-manifest.eb8fa7c08d94dd2022b4b4d7f7b3dc48.js"
 );
 
 self.addEventListener('message', (event) => {
