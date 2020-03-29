@@ -1,8 +1,6 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { Button, Input } from './Skjema';
-import { useContext } from 'react';
-import { GameContext } from '../AppContext';
 
 interface Props {
     setScore: (score: number) => void;

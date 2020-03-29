@@ -1,5 +1,6 @@
 {
   "name": "femkamp",
+  "homepage": "https://winsvold.github.io/femkamp/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -24,6 +25,7 @@
     "@types/styled-components": "^5.0.1",
     "customize-cra": "^0.9.1",
     "customize-cra-react-refresh": "^1.0.1",
+    "gh-pages": "^2.2.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.10",
     "prettier": "^2.0.2",
@@ -33,7 +35,9 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test --env=jsdom"
+    "test": "react-app-rewired test --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

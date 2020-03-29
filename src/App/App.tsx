@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { GameContext, GameContextProvider, Runder } from '../AppContext';
+import React from 'react';
+import { GameContextProvider, Runder } from '../AppContext';
 import { Route, Switch, useParams } from 'react-router';
 import Setup from './Runder/Setup';
 import Pass from './Runder/Pass';
@@ -11,7 +11,7 @@ import GameOver from './Runder/GameOver';
 import styled, { createGlobalStyle } from 'styled-components/macro';
 import Navigation from './Navigation';
 
-export const basePath = '/';
+export const basePath = '/femkamp/';
 
 const GlobalStyle = createGlobalStyle`
   html, body {

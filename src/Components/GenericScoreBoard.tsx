@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import styled from 'styled-components/macro';
-import { GameContext, Runder } from '../AppContext';
+import { GameContext } from '../AppContext';
 import { ScoreControll } from './ScoreControll';
 
 const Style = styled.div`
