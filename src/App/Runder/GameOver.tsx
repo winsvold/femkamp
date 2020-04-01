@@ -64,7 +64,7 @@ function GameOver() {
                     {spiller.navn}: {spiller.score.total}
                 </StyledLi>
             ))}
-            <StyledButton onClick={context.lagreOgStartPåNytt}>Lagre og start nytt spill</StyledButton>
+            <StyledButton onClick={() => context.lagreOgStartPåNytt()}>Lagre og start nytt spill</StyledButton>
         </StyledOl>
     );
 }

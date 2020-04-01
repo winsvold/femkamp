@@ -58,17 +58,8 @@ const initialState: GameContextI = {
 export const GameContext = createContext<GameContextI>(initialState);
 
 export function GameContextProvider(props: { children: ReactNode }) {
-    const runde = (useParams<{ runde: string }>().runde as unknown) as Runder;
-    const history = useHistory();
+    const [runde, setRunde] = useState<Runder>(initialState.runde);
     const [spillere, setSpillere] = useState<Spiller[]>(initialState.spillere);
-
-    useEffect(() => {
-        localStorage.setItem('spillere', JSON.stringify(spillere));
-    }, [spillere]);
-
-    const setRunde = (runde: Runder) => {
-        history.push(`${basePath}${Runder[runde]}`);
-    };
 
     const addSpiller = (navn: string) => {
         setSpillere((prevState) => [
@@ -95,10 +86,11 @@ export function GameContextProvider(props: { children: ReactNode }) {
     const spillereMedTotalScore = injectTotalScore(spillere);
     const sortedSpillere = spillereMedTotalScore.sort((a, b) => (a.navn > b.navn ? 1 : -1));
 
+    localStorage.setItem('spillere', JSON.stringify(spillereMedTotalScore));
     const lagreOgStartPåNytt = () => {
-        lagreSpill(spillere);
+        lagreSpill(spillereMedTotalScore);
         setSpillere([]);
-        history.push(basePath + '/' + Runder.Oppsett);
+        setRunde(Runder.Oppsett);
     };
 
     return (

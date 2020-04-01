@@ -1,5 +1,5 @@
-import React from 'react';
-import { GameContextProvider, Runder } from '../AppContext';
+import React, { useContext } from 'react';
+import { GameContext, GameContextProvider, Runder } from '../AppContext';
 import { Route, Switch, useParams } from 'react-router';
 import Setup from './Runder/Setup';
 import Pass from './Runder/Pass';
@@ -61,29 +61,39 @@ const Scrollbar = styled.div`
     overflow-x: auto;
 `;
 
+function Runde() {
+    const runde = useContext(GameContext).runde;
+    switch (runde) {
+        case Runder.Oppsett:
+            return <Setup />;
+        case Runder.Pass:
+            return <Pass />;
+        case Runder.Kløver:
+            return <Kløver />;
+        case Runder.Dronning:
+            return <Dronning />;
+        case Runder.Kabal:
+            return <Kabal />;
+        case Runder.Grang:
+            return <Grang />;
+        case Runder.GameOver:
+            return <GameOver />;
+    }
+}
+
 function App() {
-    const runde = useParams<{ runde: string }>().runde;
+    const runde = useContext(GameContext).runde;
 
     return (
-        <GameContextProvider>
+        <Style>
             <GlobalStyle />
-            <Style>
-                <StyledH1>Femkamp</StyledH1>
-                <StyledH2>{runde}</StyledH2>
-                <Scrollbar>
-                    <Switch>
-                        <Route path={basePath + Runder[Runder.Oppsett]} component={Setup} />
-                        <Route path={basePath + Runder[Runder.Pass]} component={Pass} />
-                        <Route path={basePath + Runder[Runder.Kløver]} component={Kløver} />
-                        <Route path={basePath + Runder[Runder.Kabal]} component={Kabal} />
-                        <Route path={basePath + Runder[Runder.Dronning]} component={Dronning} />
-                        <Route path={basePath + Runder[Runder.Grang]} component={Grang} />
-                        <Route path={basePath + Runder[Runder.GameOver]} component={GameOver} />
-                    </Switch>
-                </Scrollbar>
-                <Navigation />
-            </Style>
-        </GameContextProvider>
+            <StyledH1>Femkamp</StyledH1>
+            <StyledH2>{Runder[runde]}</StyledH2>
+            <Scrollbar>
+                <Runde />
+            </Scrollbar>
+            <Navigation />
+        </Style>
     );
 }
 
