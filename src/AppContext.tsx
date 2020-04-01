@@ -1,6 +1,7 @@
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { basePath } from './App/App';
+import { injectTotalScore } from './injectTotalScore';
 
 export interface Score {
     pass?: number;
@@ -11,6 +12,7 @@ export interface Score {
     };
     dronning?: number;
     grang?: number;
+    total: number;
 }
 
 export interface Spiller {
@@ -66,21 +68,29 @@ export function GameContextProvider(props: { children: ReactNode }) {
     };
 
     const addSpiller = (navn: string) => {
-        setSpillere((prevState) => [...prevState.filter((it) => it.navn !== navn), { navn: navn, score: {} }]);
+        setSpillere((prevState) => [
+            ...prevState.filter((it) => it.navn !== navn),
+            { navn: navn, score: { total: 0 } },
+        ]);
     };
 
     const updateScore = (spiller: Spiller, score: Partial<Score>) => {
-        setSpillere((prevState) => [
-            ...prevState.filter((it) => it.navn !== spiller.navn),
-            { ...spiller, score: { ...spiller.score, ...score } },
-        ]);
+        const updatedSpiller = {
+            ...spiller,
+            score: {
+                ...spiller.score,
+                ...score,
+            },
+        };
+        setSpillere((prevState) => [...prevState.filter((it) => it.navn !== spiller.navn), updatedSpiller]);
     };
 
     const removeSpiller = (spiller: Spiller) => {
         setSpillere((prevState) => [...prevState.filter((it) => it.navn !== spiller.navn)]);
     };
 
-    const sortedSpillere = spillere.sort((a, b) => (a.navn > b.navn ? 1 : -1));
+    const spillereMedTotalScore = injectTotalScore(spillere);
+    const sortedSpillere = spillereMedTotalScore.sort((a, b) => (a.navn > b.navn ? 1 : -1));
 
     return (
         <GameContext.Provider

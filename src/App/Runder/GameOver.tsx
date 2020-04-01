@@ -8,7 +8,7 @@ const StyledOl = styled.ol`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    margin: 1rem 0 4rem;
 `;
 
 const winnerAnimation = keyframes`
@@ -34,7 +34,7 @@ const loserAnimations = keyframes`
 `;
 
 const StyledLi = styled.li<{ delay: number }>`
-    margin: 0.5rem 0;
+    padding: 0.2rem 0;
     &:first-child {
         animation: ${winnerAnimation} 0.5s both;
         font-weight: bold;
@@ -48,25 +48,13 @@ const StyledLi = styled.li<{ delay: number }>`
 
 function GameOver() {
     const context = useContext(GameContext);
-
-    const score = context.spillere
-        .map((spiller) => ({
-            name: spiller.navn,
-            totalScore:
-                (spiller.score.pass ?? 0) +
-                (spiller.score.kløver ?? 0) +
-                (spiller.score.kabal?.pass ?? 0) +
-                (spiller.score.kabal?.rest ?? 0) +
-                (spiller.score.dronning ?? 0) -
-                (spiller.score.grang ?? 0),
-        }))
-        .sort((a, b) => a.totalScore - b.totalScore);
+    const sortertEtterTotalScore = context.spillere.sort((a, b) => a.score.total - b.score.total);
 
     return (
         <StyledOl>
-            {score.map((spiller, index) => (
+            {sortertEtterTotalScore.map((spiller, index) => (
                 <StyledLi delay={0.7 + index / 4}>
-                    {spiller.name}: {spiller.totalScore}
+                    {spiller.navn}: {spiller.score.total}
                 </StyledLi>
             ))}
         </StyledOl>
