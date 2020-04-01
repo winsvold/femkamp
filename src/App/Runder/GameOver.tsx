@@ -53,7 +53,7 @@ function GameOver() {
     return (
         <StyledOl>
             {sortertEtterTotalScore.map((spiller, index) => (
-                <StyledLi delay={0.7 + index / 4}>
+                <StyledLi delay={0.7 + index / 4} key={index}>
                     {spiller.navn}: {spiller.score.total}
                 </StyledLi>
             ))}

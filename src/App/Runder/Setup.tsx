@@ -44,8 +44,6 @@ function Setup() {
         setInput('');
     };
 
-    console.log(context.spillere);
-
     return (
         <Style>
             <StyledForm onSubmit={onSubmit}>
@@ -56,12 +54,16 @@ function Setup() {
                 {usualSuspects
                     .filter((navn) => !context.spillere.map((spiller) => spiller.navn).includes(navn))
                     .map((navn) => (
-                        <Button onClick={() => context.addSpiller(navn)}>{navn}</Button>
+                        <Button key={navn} onClick={() => context.addSpiller(navn)}>
+                            {navn}
+                        </Button>
                     ))}
             </UsualSuspectsStyling>
             <SpillerListe>
                 {context.spillere.map((spiller) => (
-                    <li onClick={() => context.removeSpiller(spiller)}>{spiller.navn}</li>
+                    <li key={spiller.navn} onClick={() => context.removeSpiller(spiller)}>
+                        {spiller.navn}
+                    </li>
                 ))}
             </SpillerListe>
         </Style>

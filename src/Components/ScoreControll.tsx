@@ -2,10 +2,18 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { Button, Input } from './Skjema';
 
+export type ScoreRule = {
+    maxScore: number;
+    interval: number;
+};
+
 interface Props {
     setScore: (score: number) => void;
     score?: number;
     navn: string;
+    antallSpillere: number;
+    scoreRule: ScoreRule;
+    key: string;
 }
 
 const ScoreStyle = styled.div`
@@ -45,19 +53,27 @@ export function ScoreControll(props: Props) {
             <ScoreStyle>
                 <StyledInput
                     type="number"
-                    value={props.score}
+                    value={props.score || ''}
                     onChange={(event) => props.setScore(+event.target.value)}
                 />
                 <Scroller>
-                    {[...new Array(26)].map((it, index) => (
-                        <StyledButton
-                            currentScore={props.score === index}
-                            key={index}
-                            onClick={() => props.setScore(index)}
-                        >
-                            {index}
-                        </StyledButton>
-                    ))}
+                    {[...new Array(Math.abs(props.scoreRule.maxScore / props.scoreRule.interval) + 1)].map(
+                        (it, index) => {
+                            let score = index * props.scoreRule.interval;
+                            if (props.scoreRule.maxScore < 0) {
+                                score = -score;
+                            }
+                            return (
+                                <StyledButton
+                                    currentScore={props.score === score}
+                                    key={index}
+                                    onClick={() => props.setScore(score)}
+                                >
+                                    {score}
+                                </StyledButton>
+                            );
+                        }
+                    )}
                 </Scroller>
             </ScoreStyle>
         </StyledLi>
