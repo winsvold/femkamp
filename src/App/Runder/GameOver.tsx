@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useContext } from 'react';
 import { GameContext } from '../../AppContext';
 import styled, { keyframes } from 'styled-components/macro';
+import { Button } from '../../Components/Skjema';
 
 const StyledOl = styled.ol`
     display: flex;
@@ -46,6 +47,12 @@ const StyledLi = styled.li<{ delay: number }>`
     }
 `;
 
+const StyledButton = styled(Button)`
+    margin: 2rem 0;
+    padding: 0.5rem 2rem;
+    animation: ${loserAnimations} 0.4s 3s both;
+`;
+
 function GameOver() {
     const context = useContext(GameContext);
     const sortertEtterTotalScore = context.spillere.sort((a, b) => a.score.total - b.score.total);
@@ -57,6 +64,7 @@ function GameOver() {
                     {spiller.navn}: {spiller.score.total}
                 </StyledLi>
             ))}
+            <StyledButton onClick={context.lagreOgStartPåNytt}>Lagre og start nytt spill</StyledButton>
         </StyledOl>
     );
 }

@@ -2,6 +2,7 @@ import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { basePath } from './App/App';
 import { injectTotalScore } from './injectTotalScore';
+import { lagreSpill } from './App/manageHistorikk';
 
 export interface Score {
     pass?: number;
@@ -37,6 +38,7 @@ interface GameContextI {
     updateScore: (spiller: Spiller, score: Partial<Score>) => void;
     setRunde: (runde: Runder) => void;
     removeSpiller: (spiller: Spiller) => void;
+    lagreOgStartPåNytt: () => void;
 }
 
 const localStorage = window.localStorage;
@@ -50,6 +52,7 @@ const initialState: GameContextI = {
     updateScore: () => null,
     setRunde: () => null,
     removeSpiller: () => null,
+    lagreOgStartPåNytt: () => null,
 };
 
 export const GameContext = createContext<GameContextI>(initialState);
@@ -92,9 +95,23 @@ export function GameContextProvider(props: { children: ReactNode }) {
     const spillereMedTotalScore = injectTotalScore(spillere);
     const sortedSpillere = spillereMedTotalScore.sort((a, b) => (a.navn > b.navn ? 1 : -1));
 
+    const lagreOgStartPåNytt = () => {
+        lagreSpill(spillere);
+        setSpillere([]);
+        history.push(basePath + '/' + Runder.Oppsett);
+    };
+
     return (
         <GameContext.Provider
-            value={{ setRunde, spillere: sortedSpillere, runde, addSpiller, updateScore, removeSpiller }}
+            value={{
+                setRunde,
+                spillere: sortedSpillere,
+                runde,
+                lagreOgStartPåNytt,
+                addSpiller,
+                updateScore,
+                removeSpiller,
+            }}
         >
             {props.children}
         </GameContext.Provider>
