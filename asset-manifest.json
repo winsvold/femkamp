@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/femkamp/static/css/main.200499f2.chunk.css",
-    "main.js": "/femkamp/static/js/main.effb4f87.chunk.js",
-    "main.js.map": "/femkamp/static/js/main.effb4f87.chunk.js.map",
+    "main.js": "/femkamp/static/js/main.12065098.chunk.js",
+    "main.js.map": "/femkamp/static/js/main.12065098.chunk.js.map",
     "runtime-main.js": "/femkamp/static/js/runtime-main.0cf8e4ee.js",
     "runtime-main.js.map": "/femkamp/static/js/runtime-main.0cf8e4ee.js.map",
-    "static/js/2.67bfcb2f.chunk.js": "/femkamp/static/js/2.67bfcb2f.chunk.js",
-    "static/js/2.67bfcb2f.chunk.js.map": "/femkamp/static/js/2.67bfcb2f.chunk.js.map",
+    "static/js/2.0ea7714b.chunk.js": "/femkamp/static/js/2.0ea7714b.chunk.js",
+    "static/js/2.0ea7714b.chunk.js.map": "/femkamp/static/js/2.0ea7714b.chunk.js.map",
     "index.html": "/femkamp/index.html",
-    "precache-manifest.d10d24d4552ca58375dc7223d64748e1.js": "/femkamp/precache-manifest.d10d24d4552ca58375dc7223d64748e1.js",
+    "precache-manifest.88d090bf99978c12be5b782bc1ebf79e.js": "/femkamp/precache-manifest.88d090bf99978c12be5b782bc1ebf79e.js",
     "service-worker.js": "/femkamp/service-worker.js",
     "static/css/main.200499f2.chunk.css.map": "/femkamp/static/css/main.200499f2.chunk.css.map",
-    "static/js/2.67bfcb2f.chunk.js.LICENSE.txt": "/femkamp/static/js/2.67bfcb2f.chunk.js.LICENSE.txt"
+    "static/js/2.0ea7714b.chunk.js.LICENSE.txt": "/femkamp/static/js/2.0ea7714b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0cf8e4ee.js",
-    "static/js/2.67bfcb2f.chunk.js",
+    "static/js/2.0ea7714b.chunk.js",
     "static/css/main.200499f2.chunk.css",
-    "static/js/main.effb4f87.chunk.js"
+    "static/js/main.12065098.chunk.js"
   ]
 }
