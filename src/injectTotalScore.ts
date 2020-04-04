@@ -2,18 +2,19 @@ import { Spiller } from './AppContext';
 
 export function injectTotalScore(spillere: Spiller[]): Spiller[] {
     return spillere.map((spiller) => {
+        const currentScore = spiller.score;
         const totalScore =
-            (spiller.score.pass ?? 0) +
-            (spiller.score.kløver ?? 0) +
-            (spiller.score.kabal?.pass ?? 0) +
-            (spiller.score.kabal?.rest ?? 0) +
-            (spiller.score.dame ?? 0) +
-            (spiller.score.grang ?? 0);
+            currentScore.pass +
+            currentScore.kløver +
+            currentScore.kabal.pass +
+            currentScore.kabal.rest +
+            currentScore.dame +
+            currentScore.grang;
 
         return {
             ...spiller,
             score: {
-                ...spiller.score,
+                ...currentScore,
                 total: totalScore,
             },
         };

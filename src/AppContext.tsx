@@ -3,14 +3,14 @@ import { injectTotalScore } from './injectTotalScore';
 import { lagreSpill } from './App/manageHistorikk';
 
 export interface Score {
-    pass?: number;
-    kløver?: number;
-    kabal?: {
-        pass?: number;
-        rest?: number;
+    pass: number;
+    kløver: number;
+    kabal: {
+        pass: number;
+        rest: number;
     };
-    dame?: number;
-    grang?: number;
+    dame: number;
+    grang: number;
     total: number;
 }
 
@@ -40,6 +40,18 @@ interface GameContextI {
     lagreOgStartPåNytt: () => void;
 }
 
+const defaultScore: Score = {
+    pass: 0,
+    kløver: 0,
+    kabal: {
+        pass: 0,
+        rest: 0,
+    },
+    dame: 0,
+    grang: 0,
+    total: 0,
+};
+
 const localStorage = window.localStorage;
 
 const localstorageSpillere = localStorage.getItem('spillere');
@@ -63,7 +75,7 @@ export function GameContextProvider(props: { children: ReactNode }) {
     const addSpiller = (navn: string) => {
         setSpillere((prevState) => [
             ...prevState.filter((it) => it.navn !== navn),
-            { navn: navn, score: { total: 0 } },
+            { navn: navn, score: defaultScore },
         ]);
     };
 

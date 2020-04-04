@@ -56,7 +56,7 @@ function GenericScoreBoard(props: Props) {
                 ))}
             </StyledUl>
             <Oppsummering>
-                Totalt {context.spillere.reduce((acc, current) => acc + (current.score[props.runde] ?? 0), 0)} poeng.
+                Totalt {context.spillere.reduce((acc, current) => acc + current.score[props.runde], 0)} poeng.
             </Oppsummering>
         </Style>
     );

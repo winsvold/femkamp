@@ -51,11 +51,11 @@ function KabalRad({ spiller }: { spiller: Spiller }) {
             },
         });
 
-    const longPressProps = useLongPress(() => updatePass((currentScore?.pass ?? 0) - 2));
+    const longPressProps = useLongPress(() => updatePass(currentScore.pass - 2));
 
     const passControll = (
-        <StyledButton {...longPressProps} onClick={() => updatePass((currentScore?.pass ?? 0) + 1)}>
-            Pass {currentScore?.pass ?? ''}
+        <StyledButton {...longPressProps} onClick={() => updatePass(currentScore.pass + 1)}>
+            Pass {currentScore.pass}
         </StyledButton>
     );
 
@@ -85,7 +85,7 @@ function Kabal() {
             <Oppsummering>
                 Totalt{' '}
                 {context.spillere.reduce(
-                    (acc, current) => acc + (current.score.kabal?.pass ?? 0) + (current.score.kabal?.rest ?? 0),
+                    (acc, current) => acc + current.score.kabal.pass + current.score.kabal.rest,
                     0
                 )}{' '}
                 poeng.

@@ -34,6 +34,7 @@ const StyledButton = styled(Button)<{ currentScore: boolean }>`
             box-shadow: inset 0 0 0.75rem gold;
         `}
 `;
+
 const Scroller = styled.div`
     display: inline-flex;
     overflow-x: auto;
@@ -56,7 +57,7 @@ export function ScoreControll(props: Props) {
                 {props.customScorer}
                 <StyledInput
                     type="number"
-                    value={props.score || ''}
+                    value={props.score}
                     onChange={(event) => props.setScore(+event.target.value)}
                 />
                 <Scroller>
