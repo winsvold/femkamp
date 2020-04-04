@@ -32,7 +32,22 @@ const UsualSuspectsStyling = styled.div`
     }
 `;
 
-const usualSuspects = ['Heidi', 'Jon', 'Ida', 'Daniel', 'Edgar', 'Kari', 'Irene', 'Einar'].sort();
+const usualSuspects = [
+    'Heidi',
+    'Jon',
+    'Ida',
+    'Daniel',
+    'Edgar',
+    'Kari',
+    'Irene',
+    'Einar',
+    'Grete',
+    'Liv Marit',
+    'Ove',
+    'Siri',
+    'Håvard',
+    'Øyvind',
+].sort();
 
 function Setup() {
     const context = useContext(GameContext);
