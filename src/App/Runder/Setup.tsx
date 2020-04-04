@@ -57,6 +57,7 @@ const usualSuspects = [
     'Siri',
     'Håvard',
     'Øyvind',
+    'Line',
 ].sort();
 
 function Setup() {
