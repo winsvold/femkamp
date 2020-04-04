@@ -4,12 +4,12 @@ export function injectTotalScore(spillere: Spiller[]): Spiller[] {
     return spillere.map((spiller) => {
         const currentScore = spiller.score;
         const totalScore =
-            currentScore.pass +
-            currentScore.kløver +
-            currentScore.kabal.pass +
-            currentScore.kabal.rest +
-            currentScore.dame +
-            currentScore.grang;
+            (currentScore.pass ?? 0) +
+            (currentScore.kløver ?? 0) +
+            (currentScore.kabal?.pass ?? 0) +
+            (currentScore.kabal?.rest ?? 0) +
+            (currentScore.dame ?? 0) +
+            (currentScore.grang ?? 0);
 
         return {
             ...spiller,
