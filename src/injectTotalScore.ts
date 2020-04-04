@@ -7,7 +7,7 @@ export function injectTotalScore(spillere: Spiller[]): Spiller[] {
             (spiller.score.kløver ?? 0) +
             (spiller.score.kabal?.pass ?? 0) +
             (spiller.score.kabal?.rest ?? 0) +
-            (spiller.score.dronning ?? 0) +
+            (spiller.score.dame ?? 0) +
             (spiller.score.grang ?? 0);
 
         return {

@@ -20,7 +20,7 @@ const Oppsummering = styled.div`
 `;
 
 interface Props {
-    runde: 'pass' | 'kløver' | 'dronning' | 'grang';
+    runde: 'pass' | 'kløver' | 'dame' | 'grang';
 }
 
 function GenericScoreBoard(props: Props) {
@@ -32,7 +32,7 @@ function GenericScoreBoard(props: Props) {
         switch (props.runde) {
             case 'grang':
                 return { maxScore: -maxScore, interval: 1 };
-            case 'dronning':
+            case 'dame':
                 return { maxScore: 16, interval: 4 };
             default:
                 return { maxScore: maxScore, interval: 1 };

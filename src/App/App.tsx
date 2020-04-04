@@ -4,7 +4,7 @@ import Setup from './Runder/Setup';
 import Pass from './Runder/Pass';
 import Kløver from './Runder/Kløver';
 import Kabal from './Runder/Kabal';
-import Dronning from './Runder/Dronning';
+import Dame from './Runder/Dame';
 import Grang from './Runder/Grang';
 import GameOver from './Runder/GameOver';
 import styled, { createGlobalStyle } from 'styled-components/macro';
@@ -72,8 +72,8 @@ function Runde() {
             return <Pass />;
         case Runder.Kløver:
             return <Kløver />;
-        case Runder.Dronning:
-            return <Dronning />;
+        case Runder.Dame:
+            return <Dame />;
         case Runder.Kabal:
             return <Kabal />;
         case Runder.Grang:

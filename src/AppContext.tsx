@@ -9,7 +9,7 @@ export interface Score {
         pass?: number;
         rest?: number;
     };
-    dronning?: number;
+    dame?: number;
     grang?: number;
     total: number;
 }
@@ -25,7 +25,7 @@ export enum Runder {
     Pass,
     Kløver,
     Kabal,
-    Dronning,
+    Dame,
     Grang,
     GameOver,
 }

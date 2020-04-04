@@ -85,7 +85,7 @@ function Historikk() {
                         <tr>
                             <td>{score.pass}</td>
                             <td>{score.kløver}</td>
-                            <td>{score.dronning}</td>
+                            <td>{score.dame}</td>
                             <td>{score.grang}</td>
                             <td>{score.total}</td>
                         </tr>

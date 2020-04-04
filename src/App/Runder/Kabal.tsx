@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useContext } from 'react';
-import { GameContext, Runder, Spiller } from '../../AppContext';
+import { GameContext, Spiller } from '../../AppContext';
 import styled from 'styled-components';
 import { ScoreControll, ScoreRule } from '../../Components/ScoreControll';
 import { Button } from '../../Components/Skjema';
@@ -79,7 +79,7 @@ function Kabal() {
         <Style>
             <StyledUl>
                 {context.spillere.map((spiller) => (
-                    <KabalRad spiller={spiller} />
+                    <KabalRad key={spiller.navn} spiller={spiller} />
                 ))}
             </StyledUl>
             <Oppsummering>
