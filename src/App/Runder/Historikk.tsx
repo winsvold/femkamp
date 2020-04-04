@@ -5,10 +5,13 @@ import { HistorikkSpill } from '../manageHistorikk';
 import { Spiller } from '../../AppContext';
 import ExpandablePanel from '../../Components/ExpandablePanel';
 
-const Style = styled.div``;
+const Style = styled.div`
+    margin: 6vmin 0;
+`;
 
 const StyledHistorikk = styled.div`
-    margin-left: 0.5rem;
+    margin: 0.5rem auto;
+    max-width: 30rem;
 `;
 
 const IngenHistorikkStyle = styled.div`
@@ -18,17 +21,22 @@ const IngenHistorikkStyle = styled.div`
 
 const StyledTable = styled.table`
     border-collapse: collapse;
-    border: 1px solid;
-    margin-left: 0.5rem;
+    width: 100%;
 
     th,
     td {
-        padding: 0.5rem;
-        text-align: left;
-        border: 1px solid;
+        padding: 0.2rem 0.1rem;
+        text-align: center;
         font-weight: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 0;
 
         // Total sum
+        &:first-child {
+            text-align: left;
+        }
         &:last-child {
             font-weight: bold;
         }
@@ -37,12 +45,20 @@ const StyledTable = styled.table`
     margin-bottom: 1rem;
 `;
 
-const StyledHeader = styled.h3`
-    margin-left: 0.5rem;
-    //  border-bottom: 1px solid;
-    display: inline-block;
-    padding: 0 0.5rem 0.3rem;
-`;
+const ScoreView = (props: { spiller: Spiller }) => {
+    const { navn, score } = props.spiller;
+    return (
+        <tr>
+            <td>{navn}</td>
+            <td>{score.pass}</td>
+            <td>{score.kløver}</td>
+            <td>{score.kabal?.rest + score.kabal?.pass}</td>
+            <td>{score.dame}</td>
+            <td>{score.grang}</td>
+            <td>{score.total}</td>
+        </tr>
+    );
+};
 
 function Historikk() {
     const [historikk, setHistorikk] = useState<HistorikkSpill[] | undefined>(undefined);
@@ -66,34 +82,6 @@ function Historikk() {
         );
     }
 
-    const getScoreView = (spiller: Spiller, key: string) => {
-        const { navn, score } = spiller;
-        return (
-            <div key={key}>
-                <StyledHeader>{navn}</StyledHeader>
-                <StyledTable>
-                    <thead>
-                        <tr>
-                            <th>Pass</th>
-                            <th>Kløver</th>
-                            <th>Dame</th>
-                            <th>Grang</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{score.pass}</td>
-                            <td>{score.kløver}</td>
-                            <td>{score.dame}</td>
-                            <td>{score.grang}</td>
-                            <td>{score.total}</td>
-                        </tr>
-                    </tbody>
-                </StyledTable>
-            </div>
-        );
-    };
     return (
         <Style>
             {historikk.map((spill, i) => {
@@ -105,12 +93,28 @@ function Historikk() {
                     '.' +
                     dato.getFullYear();
                 const spillerNavn = spill.spillere.map((spiller) => spiller.navn);
-                const spillerScore = spill.spillere.map((spiller) => getScoreView(spiller, dato + '-' + spiller.navn));
-                const buttonText = datoString + ' ( ' + spillerNavn.join(', ') + ' )';
+                const buttonText = datoString + ' ' + spillerNavn.join(', ');
                 return (
                     <StyledHistorikk key={buttonText}>
                         <ExpandablePanel buttonText={buttonText}>
-                            <>{spillerScore}</>
+                            <StyledTable>
+                                <thead>
+                                    <tr>
+                                        <th>Spiller</th>
+                                        <th>Pass</th>
+                                        <th>Kløver</th>
+                                        <th>Kabal</th>
+                                        <th>Dame</th>
+                                        <th>Grang</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {spill.spillere.map((spiller) => (
+                                        <ScoreView spiller={spiller} key={spiller.navn} />
+                                    ))}
+                                </tbody>
+                            </StyledTable>
                         </ExpandablePanel>
                     </StyledHistorikk>
                 );

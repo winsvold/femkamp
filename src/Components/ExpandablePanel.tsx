@@ -4,13 +4,15 @@ import styled, { css } from 'styled-components';
 import { Button } from './Skjema';
 
 const ButtonStyle = styled(Button)`
-    margin: 1rem 1rem 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 `;
 
 const Chevron = styled.span<{ direction: string }>`
     &::before {
         border-style: solid;
-        border-width: 0.2em 0.2em 0 0;
+        border-width: 0.15em 0.15em 0 0;
         content: '';
         display: inline-block;
         height: 0.45em;
@@ -41,7 +43,7 @@ function ExpandablePanel(props: Props) {
     return (
         <>
             <ButtonStyle onClick={() => setIsOpen(!isOpen)}>
-                {props.buttonText} <Chevron direction={isOpen ? 'up' : 'down'} />
+                <span>{props.buttonText}</span> <Chevron direction={isOpen ? 'up' : 'down'} />
             </ButtonStyle>
             {isOpen && <div>{props.children}</div>}
         </>
