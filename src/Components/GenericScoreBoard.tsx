@@ -34,6 +34,8 @@ function GenericScoreBoard(props: Props) {
                 return { maxScore: -maxScore, interval: 1 };
             case 'dame':
                 return { maxScore: 16, interval: 4 };
+            case 'kløver':
+                return { maxScore: 13, interval: 1 };
             default:
                 return { maxScore: maxScore, interval: 1 };
         }
