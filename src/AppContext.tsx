@@ -1,6 +1,4 @@
-import React, { createContext, ReactNode, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
-import { basePath } from './App/App';
+import React, { createContext, ReactNode, useState } from 'react';
 import { injectTotalScore } from './injectTotalScore';
 import { lagreSpill } from './App/manageHistorikk';
 
@@ -22,6 +20,7 @@ export interface Spiller {
 }
 
 export enum Runder {
+    Historikk,
     Oppsett,
     Pass,
     Kløver,

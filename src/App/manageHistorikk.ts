@@ -2,7 +2,7 @@ import { Spiller } from '../AppContext';
 
 const localStorage = window.localStorage;
 
-interface HistorikkSpill {
+export interface HistorikkSpill {
     spillere: Spiller[];
     dato: Date;
 }

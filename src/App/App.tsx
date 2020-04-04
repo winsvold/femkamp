@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { GameContext, GameContextProvider, Runder } from '../AppContext';
-import { Route, Switch, useParams } from 'react-router';
+import { GameContext, Runder } from '../AppContext';
 import Setup from './Runder/Setup';
 import Pass from './Runder/Pass';
 import Kløver from './Runder/Kløver';
@@ -10,6 +9,7 @@ import Grang from './Runder/Grang';
 import GameOver from './Runder/GameOver';
 import styled, { createGlobalStyle } from 'styled-components/macro';
 import Navigation from './Navigation';
+import Historikk from './Runder/Historikk';
 
 export const basePath = '/femkamp/';
 
@@ -64,6 +64,8 @@ const Scrollbar = styled.div`
 function Runde() {
     const runde = useContext(GameContext).runde;
     switch (runde) {
+        case Runder.Historikk:
+            return <Historikk />;
         case Runder.Oppsett:
             return <Setup />;
         case Runder.Pass:
