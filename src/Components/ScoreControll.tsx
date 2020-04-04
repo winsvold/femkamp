@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { Button, Input } from './Skjema';
+import { ReactNode } from 'react';
 
 export type ScoreRule = {
     maxScore: number;
@@ -14,6 +15,7 @@ interface Props {
     antallSpillere: number;
     scoreRule: ScoreRule;
     key: string;
+    customScorer?: ReactNode;
 }
 
 const ScoreStyle = styled.div`
@@ -51,6 +53,7 @@ export function ScoreControll(props: Props) {
         <StyledLi>
             <NavnStyle>{props.navn}</NavnStyle>
             <ScoreStyle>
+                {props.customScorer}
                 <StyledInput
                     type="number"
                     value={props.score || ''}

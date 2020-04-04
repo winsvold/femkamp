@@ -33,7 +33,7 @@ function GenericScoreBoard(props: Props) {
             case 'grang':
                 return { maxScore: -maxScore, interval: 1 };
             case 'dronning':
-                return { maxScore: 12, interval: 4 };
+                return { maxScore: 16, interval: 4 };
             default:
                 return { maxScore: maxScore, interval: 1 };
         }
