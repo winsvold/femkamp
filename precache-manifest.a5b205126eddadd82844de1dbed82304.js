@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6aef5699268ca40d6145598edf48463d",
+    "revision": "dfd29f0ea4f527db49065d471e807dbd",
     "url": "/femkamp/index.html"
   },
   {
-    "revision": "2a53c0bcac5567bd4b77",
+    "revision": "500739a6baa6cfb6f85b",
     "url": "/femkamp/static/css/main.200499f2.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/femkamp/static/js/2.4f9d1f82.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2a53c0bcac5567bd4b77",
-    "url": "/femkamp/static/js/main.0d3e931c.chunk.js"
+    "revision": "500739a6baa6cfb6f85b",
+    "url": "/femkamp/static/js/main.6c298a6a.chunk.js"
   },
   {
     "revision": "e3a7696ac1ef41fc7ef9",
