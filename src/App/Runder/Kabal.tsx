@@ -24,6 +24,7 @@ const Oppsummering = styled.div`
 const StyledButton = styled(Button)`
     white-space: nowrap;
     margin-right: 0.6rem;
+    user-select: none;
 `;
 
 function KabalRad({ spiller }: { spiller: Spiller }) {
@@ -51,10 +52,21 @@ function KabalRad({ spiller }: { spiller: Spiller }) {
             },
         });
 
-    const longPressProps = useLongPress(() => updatePass(currentScore.pass - 2));
+    const handleClick = (event: React.MouseEvent) => {
+        switch (event.type) {
+            case 'contextmenu':
+                event.preventDefault();
+                currentScore.pass > 0 && updatePass(currentScore.pass - 1);
+                return;
+            case 'click':
+                updatePass(currentScore.pass + 1);
+                console.log('click');
+                return;
+        }
+    };
 
     const passControll = (
-        <StyledButton {...longPressProps} onClick={() => updatePass(currentScore.pass + 1)}>
+        <StyledButton onClick={handleClick} onContextMenu={handleClick}>
             Pass {currentScore.pass}
         </StyledButton>
     );
