@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { ScoreControll, ScoreRule } from '../../Components/ScoreControll';
 import { Button } from '../../Components/Skjema';
 import useLongPress from '../../utils/useLongPress';
+import ScoreTable from '../../Components/ScoreTable';
 
 const Style = styled.div`
     margin: 2rem 0;
@@ -17,7 +18,7 @@ const StyledUl = styled.ul`
 const Oppsummering = styled.div`
     background-color: #0004;
     padding: 1rem;
-    margin: 0.1rem;
+    margin: 0.1rem 0.1rem 1rem;
     text-align: center;
 `;
 
@@ -102,6 +103,7 @@ function Kabal() {
                 )}{' '}
                 poeng.
             </Oppsummering>
+            <ScoreTable spillere={context.spillere} />
         </Style>
     );
 }

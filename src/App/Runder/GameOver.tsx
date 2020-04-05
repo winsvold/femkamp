@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { GameContext } from '../../AppContext';
 import styled, { keyframes } from 'styled-components/macro';
 import { Button } from '../../Components/Skjema';
+import ScoreTable from '../../Components/ScoreTable';
 
 const StyledOl = styled.ol`
     display: flex;
@@ -47,10 +48,10 @@ const StyledLi = styled.li<{ delay: number }>`
     }
 `;
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(Button)<{ delay: number }>`
     margin: 2rem 0;
     padding: 0.5rem 2rem;
-    animation: ${loserAnimations} 0.4s 3s both;
+    animation: ${loserAnimations} 0.4s ${(props) => props.delay}s both;
 `;
 
 function GameOver() {
@@ -64,7 +65,10 @@ function GameOver() {
                     {spiller.navn}: {spiller.score.total}
                 </StyledLi>
             ))}
-            <StyledButton onClick={() => context.lagreOgStartPåNytt()}>Lagre og start nytt spill</StyledButton>
+            <StyledButton delay={context.spillere.length * 0.3 + 0.7} onClick={() => context.lagreOgStartPåNytt()}>
+                Lagre og start nytt spill
+            </StyledButton>
+            <ScoreTable spillere={sortertEtterTotalScore} />
         </StyledOl>
     );
 }

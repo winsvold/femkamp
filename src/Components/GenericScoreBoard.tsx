@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { useContext, useMemo } from 'react';
 import styled from 'styled-components/macro';
-import { GameContext } from '../AppContext';
+import { GameContext, Runder } from '../AppContext';
 import { ScoreControll, ScoreRule } from './ScoreControll';
+import ScoreTable from './ScoreTable';
 
 const Style = styled.div`
     margin: 2rem 0;
@@ -15,7 +16,7 @@ const StyledUl = styled.ul`
 const Oppsummering = styled.div`
     background-color: #0004;
     padding: 1rem;
-    margin: 0.1rem;
+    margin: 0.1rem 0.1rem 1rem;
     text-align: center;
 `;
 
@@ -56,8 +57,9 @@ function GenericScoreBoard(props: Props) {
                 ))}
             </StyledUl>
             <Oppsummering>
-                Totalt {context.spillere.reduce((acc, current) => acc + current.score[props.runde], 0)} poeng.
+                Totalt {context.spillere.reduce((acc, current) => acc + current.score[props.runde], 0)} poeng
             </Oppsummering>
+            <ScoreTable spillere={context.spillere} />
         </Style>
     );
 }
