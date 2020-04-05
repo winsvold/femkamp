@@ -48,7 +48,7 @@ function ScoreTable(props: { spillere: Spiller[] }) {
         <StyledTable>
             <thead>
                 <tr>
-                    <th>Spiller</th>
+                    <th></th>
                     <th>Pass</th>
                     <th>Kløver</th>
                     <th>Kabal</th>

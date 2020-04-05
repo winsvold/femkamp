@@ -1,18 +1,19 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Button } from './Skjema';
 
 const ButtonStyle = styled(Button)`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
 `;
 
 const Chevron = styled.span<{ direction: string }>`
     &::before {
         border-style: solid;
-        border-width: 0.15em 0.15em 0 0;
+        border-width: 0.12em 0.12em 0 0;
         content: '';
         display: inline-block;
         height: 0.45em;
@@ -33,7 +34,7 @@ const Chevron = styled.span<{ direction: string }>`
 `;
 
 interface Props {
-    buttonText: string;
+    buttonText: ReactNode;
     children: React.ReactElement;
 }
 

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { HistorikkSpill } from '../manageHistorikk';
-import { Spiller } from '../../AppContext';
 import ExpandablePanel from '../../Components/ExpandablePanel';
 import ScoreTable from '../../Components/ScoreTable';
 
@@ -20,6 +19,14 @@ const IngenHistorikkStyle = styled.div`
     text-align: center;
 `;
 
+const TextStyle = styled.div`
+    display: flex;
+    text-align: left;
+    > *:last-child {
+        margin-left: 0.5rem;
+    }
+`;
+
 function Historikk() {
     const [historikk, setHistorikk] = useState<HistorikkSpill[] | undefined>(undefined);
     useEffect(() => {
@@ -27,7 +34,7 @@ function Historikk() {
 
         if (item) {
             const parsedHistorikk: HistorikkSpill[] = JSON.parse(item);
-            setHistorikk(parsedHistorikk);
+            setHistorikk(parsedHistorikk.reverse());
         }
     }, []);
 
@@ -53,9 +60,14 @@ function Historikk() {
                     '.' +
                     dato.getFullYear();
                 const spillerNavn = spill.spillere.map((spiller) => spiller.navn);
-                const buttonText = datoString + ' ' + spillerNavn.join(', ');
+                const buttonText = (
+                    <TextStyle>
+                        <span>{datoString}</span>
+                        <span>{spillerNavn.join(', ')}</span>
+                    </TextStyle>
+                );
                 return (
-                    <StyledHistorikk key={buttonText}>
+                    <StyledHistorikk key={i}>
                         <ExpandablePanel buttonText={buttonText}>
                             <ScoreTable spillere={spill.spillere} />
                         </ExpandablePanel>
