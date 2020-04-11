@@ -12,7 +12,7 @@ const StyledNav = styled.nav`
 `;
 
 const StyledButton = styled(Button)<{ align: 'left' | 'right' }>`
-    padding: 0.5rem 2rem;
+    padding: 0.3rem 2rem;
     ${(props) =>
         props.align === 'right' &&
         css`

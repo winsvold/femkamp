@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { GameContext, Runder } from '../AppContext';
 import Setup from './Runder/Setup';
 import Pass from './Runder/Pass';
@@ -10,8 +10,6 @@ import GameOver from './Runder/GameOver';
 import styled, { createGlobalStyle } from 'styled-components/macro';
 import Navigation from './Navigation';
 import Historikk from './Runder/Historikk';
-
-export const basePath = '/femkamp/';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -85,13 +83,18 @@ function Runde() {
 
 function App() {
     const runde = useContext(GameContext).runde;
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        ref.current?.scrollTo(0, 0);
+    }, [runde]);
 
     return (
         <Style>
             <GlobalStyle />
             <StyledH1>Femkamp</StyledH1>
             <StyledH2>{Runder[runde]}</StyledH2>
-            <Scrollbar>
+            <Scrollbar ref={ref}>
                 <Runde />
             </Scrollbar>
             <Navigation />
