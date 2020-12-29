@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useContext, useMemo } from 'react';
 import styled from 'styled-components/macro';
-import { GameContext, Runder } from '../AppContext';
+import { GameContext } from '../AppContext';
 import { ScoreControll, ScoreRule } from './ScoreControll';
 import ScoreTable from './ScoreTable';
 
