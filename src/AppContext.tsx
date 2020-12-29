@@ -100,7 +100,7 @@ export function GameContextProvider(props: { children: ReactNode }) {
     const lagreOgStartPåNytt = () => {
         lagreSpill(spillereMedTotalScore);
         setSpillere([]);
-        setRunde(Runder.Oppsett);
+        setRunde(Runder.NyttSpill);
     };
 
     return (
