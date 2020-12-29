@@ -64,7 +64,7 @@ function Runde() {
     switch (runde) {
         case Runder.Historikk:
             return <Historikk />;
-        case Runder.Oppsett:
+        case Runder.NyttSpill:
             return <Setup />;
         case Runder.Pass:
             return <Pass />;
