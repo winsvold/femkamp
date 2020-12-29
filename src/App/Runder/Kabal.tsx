@@ -4,7 +4,6 @@ import { GameContext, Spiller } from '../../AppContext';
 import styled from 'styled-components';
 import { ScoreControll, ScoreRule } from '../../Components/ScoreControll';
 import { Button } from '../../Components/Skjema';
-import useLongPress from '../../utils/useLongPress';
 import ScoreTable from '../../Components/ScoreTable';
 
 const Style = styled.div`
