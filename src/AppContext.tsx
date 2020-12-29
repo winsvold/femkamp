@@ -95,7 +95,6 @@ export function GameContextProvider(props: { children: ReactNode }) {
     };
 
     const spillereMedTotalScore = injectTotalScore(spillere);
-    const sortedSpillere = spillereMedTotalScore.sort((a, b) => (a.navn > b.navn ? 1 : -1));
 
     localStorage.setItem('spillere', JSON.stringify(spillereMedTotalScore));
     const lagreOgStartPåNytt = () => {
@@ -108,7 +107,7 @@ export function GameContextProvider(props: { children: ReactNode }) {
         <GameContext.Provider
             value={{
                 setRunde,
-                spillere: sortedSpillere,
+                spillere: spillereMedTotalScore,
                 runde,
                 lagreOgStartPåNytt,
                 addSpiller,
