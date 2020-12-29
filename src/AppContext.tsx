@@ -21,7 +21,7 @@ export interface Spiller {
 
 export enum Runder {
     Historikk,
-    Oppsett,
+    NyttSpill,
     Pass,
     Kløver,
     Kabal,
