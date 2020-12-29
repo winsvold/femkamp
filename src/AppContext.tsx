@@ -58,7 +58,7 @@ const localstorageSpillere = localStorage.getItem('spillere');
 
 const initialState: GameContextI = {
     spillere: localstorageSpillere ? JSON.parse(localstorageSpillere) : [],
-    runde: Runder.Oppsett,
+    runde: Runder.NyttSpill,
     addSpiller: () => null,
     updateScore: () => null,
     setRunde: () => null,
