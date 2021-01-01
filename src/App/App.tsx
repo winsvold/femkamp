@@ -76,7 +76,7 @@ function Runde() {
             return <Kabal />;
         case Runder.Grang:
             return <Grang />;
-        case Runder.GameOver:
+        case Runder.Resultat:
             return <GameOver />;
     }
 }
