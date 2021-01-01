@@ -27,7 +27,7 @@ export enum Runder {
     Kabal,
     Dame,
     Grang,
-    GameOver,
+    Resultat,
 }
 
 interface GameContextI {
